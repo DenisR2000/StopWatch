@@ -1,0 +1,175 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.stopwatch__container {
+    box-shadow:   10px 10px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgb(121, 121, 230);
+    min-height: 150px;
+    min-width: 250px;
+    width: 450px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 11px;
+    .time__container {
+        font-size: 27px;
+        font-weight: bold;
+    }
+}
+.buttons__container {
+    margin-top: 17px;
+    display: flex;
+    justify-content: center;
+    button {
+        background-image: linear-gradient(130deg, rgba(166, 166, 166, 0.3) 39%, grey 57%);    border-radius:50%; 
+        font-family: bolder;
+        font-size: 22px;
+        background-color: rgb(139, 175, 205);
+        color: #FFF;
+        border-radius: 7px;
+        min-height: 40px;
+        min-width: 90px;
+        height: 40px;
+        width: 80px;
+        border: 0.5px solid rgb(219, 218, 218);
+        cursor: pointer;
+        box-shadow:   10px 10px 10px rgba(0, 0, 0, 0.4);
+        padding: 3px 7.5px 3px 7.5px;
+        margin: 10px 15px;
+        transition: all 0.4s ease 0s;
+    }
+    button:hover {
+        box-shadow:   5px 10px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease 0s;
+    }
+}
+a {
+    max-width: 50px;
+}
+.button-play{
+    position:relative;
+    border: 5px solid white;
+    box-shadow:0 4px 6px -3px rgba(black, .3), inset 0 3px 4px -2px rgba(black, .25);
+    position:relative;
+    width:50px;
+    height:50px;
+    background:grey;
+    background-image: linear-gradient(130deg, rgba(166, 166, 166, 0.3) 39%, grey 57%);    border-radius:50%; 
+    transition: all .2s cubic-bezier(0.68, -0.55, 0.465, 1.55) .2s, border-width .4s cubic-bezier(0.68, -0.55, 0.465, 1.55);
+    margin: 0;
+    &:before{
+      display:block;
+      position:absolute;
+      content:"";
+      bottom:50%;
+      left:57%;
+      width:0;
+      height:0;
+      border:30px solid transparent;
+      border-width: 15px 0px 15px 25px;
+      border-radius:0;
+      border-left-color:white;
+      transform:translate(-13px, 50%);
+    }
+    
+    &:hover, &.active{    
+      border: 3px solid white;
+      .circle{
+        stroke-dasharray:-1000px;
+        stroke-dashoffset:-500px;
+        opacity:0;
+        transition: all 2s linear .3s, opacity .1s linear 2s;
+      }
+      
+      &:before{
+        animation:playJump .5s linear infinite;
+      }
+    }
+  }
+  
+  @keyframes playJump{
+    
+    0%   { transform:translate(-13px, 60%) scale(1.1,0.7) ; }
+    10%   { transform:translate(-13px, 30%) scale(0.9,1.2); }
+    20%  { transform:translate(-13px, 15%); }
+    40%  { transform:translate(-13px, 10%); }
+    // 45%  { top: 160px; height: 40px; width: 60px; margin-left: -30px; }
+    50%  {transform:translate(-13px, 10%); }
+    55%  { transform:translate(-13px, 18%); }
+    60%  { transform:translate(-13px, 20%); }
+    65%  { transform:translate(-13px, 25%); }
+    70%  { transform:translate(-13px, 30%);}
+    90%  { transform:translate(-13px, 60%) scale(1.2,0.7); }
+    100% { transform:translate(-13px, 60%) scale(1.4,0.7);}
+  }
+
+
+@mixin size($width:inherit, $height:inherit) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flex($vertical, $horizontal, $direction:row) {
+  display: flex;
+  align-items: $vertical;
+  justify-content: $horizontal;
+  flex-direction: $direction;
+}
+
+@mixin border-radius($topLeft:50%, $topRight:50%, $botLeft:50%, $botRight:50%) {
+  border-top-left-radius: $topLeft;
+  border-top-right-radius: $topRight;
+  border-bottom-left-radius: $botLeft;
+  border-bottom-right-radius: $botRight;
+}
+
+$deepBlue-5: #f1f3f4;
+$deepBlue-10: #e4e6ea;
+$deepBlue-20: #CCCED5;
+$deepBlue-40: #999EAC;
+$deepBlue-60: #666D82;
+$deepBlue-80: #333D59;
+$deepBlue-90: #192445;
+$deepBlue-100: #000C2F;
+$deepBlue-120: #000923;
+
+$blue: #2E90EB;
+$salmon: #f56b72;
+  .button {
+    margin-left: 35px;
+    @include size(50px, 60px);
+    @include flex(center, center);
+  
+    &--play {
+      border-radius: 50%;
+    }
+    &--play & {
+      &__shape {
+        width: 25px;
+        height: 75px;
+        background: #FFF;
+        transition: .3s ease-in-out;
+  
+        &--one {
+          -webkit-clip-path: polygon(0 35%, 30% 35%, 30% 65%, 0% 65%);
+          transform: translateX(0px);
+          margin-bottom: 25px;
+          margin-left: -27px;
+        }
+  
+        &--two {
+          -webkit-clip-path: polygon(0 35%, 30% 35%, 30% 65%, 0% 65%);
+          transform: translateX(0px);
+          margin-bottom: 25px;
+          margin-left: -10px;
+        }
+      }
+      
+    }
+  }

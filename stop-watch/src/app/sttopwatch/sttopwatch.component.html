@@ -1,0 +1,22 @@
+<article class="stopwatch__container">
+    <section class="time__container">
+        <span class="MM">{{ stopwatch.minutes }} : </span>
+        <span class="SS">{{ stopwatch.seconds }}</span>
+    </section>
+    <section class="buttons__container">
+        <button [id]="running ? 'btn-stop' : 'button-play'" [className]="running ? 'btn-stop' : 'button button-play'" (click)="start()">
+            <div  [className]="running ? 'button button--play' : ''">
+                <div class="button__shape button__shape--one"></div>
+                <div class="button__shape button__shape--two"></div>
+            </div>
+        </button>
+        <script src="https://unpkg.com/rxjs@6.4.0/bundles/rxjs.umd.min.js"></script>
+        <button id="btn__wait" calss="btn__wait" (click)="wait()">
+            <span>Wait</span>
+        </button>
+        <button class="btn__reset" (click)="reset()">
+            <span>Reset</span>
+        </button>
+        
+    </section>
+</article>
